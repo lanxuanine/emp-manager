@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emsby.empmanager.mapper.AuditMapper">
+    <resultMap id="AuditMap" type="com.emsby.empmanager.pojo.AuditEntity">
+        <id column="aid" property="aid"></id>
+        <result column="aUthor" property="aUthor"></result>
+        <result column="aRefer" property="aRefer"></result>
+        <result column="aRes" property="aRes"></result>
+        <result column="arTime" property="arTime"></result>
+        <result column="aTime" property="aTime"></result>
+        <result column="aCont" property="aCont"></result>
+    </resultMap>
+
+</mapper>

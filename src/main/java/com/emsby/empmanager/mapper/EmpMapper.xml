@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emsby.empmanager.mapper.EmpMapper">
+    <resultMap id="EmpMap" type="com.emsby.empmanager.pojo.EmpEntity">
+        <id column="eid" property="eid" ></id>
+        <result column="eJobNum" property="eJobNum"/>
+        <result column="eName" property="eName"/>
+        <result column="eSex" property="eSex"/>
+        <result column="eBarithday" property="eBarithday"/>
+        <result column="eFirstTime" property="eFirstTime"/>
+        <result column="ePhone" property="ePhone"/>
+        <result column="eAdress" property="eAdress"/>
+        <result column="eMail" property="eMail"/>
+        <result column="eStat" property="eStat"/>
+        <result column="eJobTitle" property="eJobTitle"/>
+    </resultMap>
+</mapper>

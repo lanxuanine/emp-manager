@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emsby.empmanager.mapper.ClockinMapper">
+    <resultMap id="ClockMap" type="com.emsby.empmanager.pojo.ClockinEntity">
+        <id column="cid" property="cid"/>
+        <result column="clockStat" property="clockStat"/>
+        <result column="absence" property="absence"/>
+        <result column="earlyTime" property="earlyTime"/>
+        <result column="onTime" property="onTime"/>
+        <result column="workTime" property="workTime"/>
+        <result column="restTime" property="restTime"/>
+        <result column="laterTime" property="laterTime"/>
+    </resultMap>
+</mapper>
