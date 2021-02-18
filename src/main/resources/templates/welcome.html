@@ -100,29 +100,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">文章统计
 
-                        </div>
-                        <div class="layui-card-body ">
-
-                            <div id="chart2" style="width: 100%;height: 245px;"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-sm6 layui-col-md3">
-                    <div class="layui-card">
-                        <div class="layui-card-header">数据月统计
-
-                        </div>
-                        <div class="layui-card-body ">
-
-                            <div id="chart4" style="width: 100%;height: 245px;"></div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="layui-col-sm6 layui-col-md2">
                     <div class="layui-card">
@@ -175,7 +153,6 @@
         </div>
     </body>
 
-    <script th:src="@{/js/echarts.min.js}"></script>
     <script type="text/javascript">
         $(function () {
             $('.myscroll').myScroll({
@@ -185,47 +162,6 @@
 
         });
 
-        layui.use('layer', function(){
-            var layer = layui.layer;
-            var remember = '';
-            $(document).ready(function(){
-                layer.prompt({
-                    formType: 2,
-                    anim: 3,
-                    offset: 'rb',
-                    value: "",
-                    title: '便签',
-                    skin: 'demo-class',
-                    area: ['280px', '150px'],
-                    id: 'remember' ,//设定一个id，防止重复弹出
-                    btn: ['确定', '取消'],
-                    shade: 0,
-                    moveType: 1, //拖拽模式，0或者1
-                    btn2: function(index, layero){
-                        $.ajax({
-                            url:"delremember.html"
-                            ,type:"post"
-                            ,success:function(res) {
-                                layer.msg(res.msg);
-                                if(res.code == 1) {
-                                    $('#remember textarea').val('');
-                                }
-                            }
-                        })
-                        return false;
-                    }
-                },function(value, index, elem){
-                    $.ajax({
-                        url:"/admin/main/remember.shtml"
-                        ,type:"post"
-                        ,data:{message:value}
-                        ,success:function(res) {
-                            layer.msg(res.msg);
-                        }
-                    })
-                })
-            });
-        });
 
         function getTime(){
             var myDate = new Date();
