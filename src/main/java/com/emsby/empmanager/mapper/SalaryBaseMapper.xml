@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emsby.empmanager.mapper.SalaryBaseMapper">
+    <resultMap id="SalaryBaseMap" type="com.emsby.empmanager.pojo.SalaryBaseEntity">
+        <id column="sbid" property="sbid"/>
+        <result property="wage" column="wage"/>
+        <result column="wageType" property="wageType"/>
+        <result property="createTime" column="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+    </resultMap>
+</mapper>

@@ -9,6 +9,10 @@
         <result column="arTime" property="arTime"></result>
         <result column="aTime" property="aTime"></result>
         <result column="aCont" property="aCont"></result>
+        <result column="aType" property="aType"/>
+        <result property="aStat" column="aStat"/>
+        <result property="aAnother" column="aAnother"/>
+        <result column="empid" property="empid"/>
     </resultMap>
 
 </mapper>

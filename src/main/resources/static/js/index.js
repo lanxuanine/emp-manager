@@ -9,7 +9,7 @@
 	Xadmin.prototype.init = function() {
 		var tab_list = this.get_data();
 		for(var i in tab_list){
-			this.add_lay_tab(tab_list[i].title,tab_list[i].url,i);
+			this.add_lay_tab(tab_list[i].title,tab_list[i].url,i,tab_list[i].contents);
 		}
 		element.tabChange('xbs_tab', i);
 	};
@@ -30,7 +30,7 @@
 
 	Xadmin.prototype.add_tab = function (title,url,is_refresh) {
 		var id = md5(url);//md5每个url
-
+        if (url == undefined || url == null || url == ''){layer.alert("该项配置不全！");return false;}
 		//重复点击
 		for (var i = 0; i <$('.x-iframe').length; i++) {
             if($('.x-iframe').eq(i).attr('tab-id')==id){
@@ -40,10 +40,7 @@
                 return;
             }
         };
-
-		this.add_lay_tab(title,url,id);
-	    this.set_data(title,url,id);
-	    element.tabChange('xbs_tab', id);
+        this.http_res(title,url,id);
 
 	}
 
@@ -56,12 +53,40 @@
       parent.element.tabDelete('xbs_tab', id);
     }
   }
+    Xadmin.prototype.http_res=function (title,url,id){
+	    let xhtp = new XMLHttpRequest();
+        xhtp.open("GET",url,true);
+        xhtp.send();
+	    xhtp.onreadystatechange = ()=>{
+	        if (xhtp.readyState == 4 && xhtp.status == 200){
+	            let res=xhtp.responseText.substring(xhtp.responseText.indexOf("<body>")+"<body>".length,xhtp.responseText.lastIndexOf("</body>"));
+                // console.log(res);
+                // let res = xhtp.responseText;
+                this.add_lay_tab(title,url,id,res);
+                this.set_data(title,url,id,res);
+                element.tabChange('xbs_tab', id);
+            }
+        }
+    }
+    Xadmin.prototype.web = function (url){
+        if("WebSocket" in window){
+            let web = new WebSocket("ws://localhost:8080/audit.do");
+            web.send(null);
+            web.onmessage = (ev)=>{
+                console.log(ev.data)
+            };
+            web.onopen = function (){console.log("link success!");}
+        }
 
-	Xadmin.prototype.add_lay_tab = function(title,url,id) {
+    }
+
+	Xadmin.prototype.add_lay_tab = function(title,url,id,content) {
 		element.tabAdd('xbs_tab', {
 	       title: title 
-	        ,content: '<iframe tab-id="'+id+'" frameborder="0" src="'+url+'" scrolling="yes" class="x-iframe"></iframe>'
-	        ,id: id
+	        // ,content: '<iframe tab-id="'+id+'" frameborder="0" th:replace="'+content+'" scrolling="yes" class="x-iframe"></iframe>'
+            ,content: content
+            ,id: id
+
 	    })
 	}
 	/**
@@ -133,14 +158,14 @@
 	 * [set_data 增加某一项]
 	 * @param {[type]} id [description]
 	 */
-	Xadmin.prototype.set_data = function(title,url,id) {
+	Xadmin.prototype.set_data = function(title,url,id,cont) {
 
 		if(typeof is_remember!="undefined")
         	return false;
 
-		layui.data('tab_list', {
+		layui.sessionData('tab_list', {
 		  key: id
-		  ,value: {title:title,url:url}
+		  ,value: {title:title,url:url,contents:cont}
 		});
 	};
 

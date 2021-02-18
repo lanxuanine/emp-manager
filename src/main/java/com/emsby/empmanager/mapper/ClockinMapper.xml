@@ -6,9 +6,12 @@
         <result column="clockStat" property="clockStat"/>
         <result column="absence" property="absence"/>
         <result column="earlyTime" property="earlyTime"/>
-        <result column="onTime" property="onTime"/>
+        <result column="onStauts" property="onStatus"/>
         <result column="workTime" property="workTime"/>
         <result column="restTime" property="restTime"/>
         <result column="laterTime" property="laterTime"/>
+        <result column="overTime" property="overTime"/>
+        <result property="updateTime" column="updateTime"/>
+        <result column="empid" property="empid"/>
     </resultMap>
 </mapper>

@@ -3,10 +3,21 @@
 <mapper namespace="com.emsby.empmanager.mapper.SalaryMapper">
     <resultMap id="EmpMap" type="com.emsby.empmanager.pojo.SalaryEntity">
         <id column="sid" property="sid" ></id>
-        <result column="sBasePay" property="sBasePay"/>
-        <result column="sEtraPay" property="sEtraPay"/>
-        <result column="sEatPay" property="sEatPay"/>
-        <result column="sAcPay" property="sAcPay"/>
         <result column="sDmPay" property="sDmPay"/>
+        <result property="sWagePay" column="sWagePay"/>
+        <result column="sNetPay" property="sNetPay"/>
+        <result property="sDarkMoney" column="sDarkMoney"/>
+        <result column="sPit" property="sPit"/>
+        <result property="sFsiaohs" column="sFsiaohs"/>
+        <result property="createTime" column="createTime"/>
+        <result column="empid" property="empid"/>
     </resultMap>
+
+    <select id="getEmpPay" resultType="java.util.HashMap" >
+        select esb.*,case wage_type when '缺勤扣钱' then if(c.work_time&lt;22,wage*absence-TRUNCATE(TRUNCATE(6000/22,2)*(22-work_time),2),wage*absence) when '餐补' then wage*work_time when '加班费' then wage*over_time when '全勤奖' then if(c.work_time>=22,wage,null) else wage end as pay from (SELECT e.eid,e.e_name,es.wage,wage_type FROM (select sl.empid,sb.sbid,sb.wage,wage_type from `emp-salarybase` sl LEFT JOIN salary_base sb on sl.sbid = sb.sbid) as  es INNER JOIN emp e on es.empid = e.eid)
+         esb left join clockin c on c.empid = esb.eid where wage_type != '缺勤扣钱' and wage_type!='加班费' and esb.eid = #{id} order by e_name;
+         </select>
+    <select id="getEmpDep" resultType="HashMap">
+        select salary.*,d_name from (select ed.empId,d_name from emp_dep ed left join dep on ed.depId=did) as emd left join salary on emd.empId = salary.empid
+    </select>
 </mapper>

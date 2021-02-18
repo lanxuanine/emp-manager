@@ -18,11 +18,13 @@ public class AuditEntity implements Serializable {
     private String aUthor;  //审核的人
     private String aRefer;  //提交审核的人
     private String aRes;  //审核的结果
-    @TableField("arTime")
+    @TableField(value = "ar_time")
     private Date createTime;    //提交审核的时间
     private Date aTime;     //审核的时间
     private String aCont;   //审核的内容
-
+    private String aType;  //审核类型
+    private String aStat; //审核状态
+    private String empid;
 
     @Override
     public String toString() {
@@ -34,21 +36,32 @@ public class AuditEntity implements Serializable {
                 ", createTime=" + createTime +
                 ", aTime=" + aTime +
                 ", aCont='" + aCont + '\'' +
+                ", aType='" + aType + '\'' +
+                ", aStat='" + aStat + '\'' +
+                ", empid='" + empid + '\'' +
+                ", aAnother='" + aAnother + '\'' +
                 '}';
     }
 
-    public AuditEntity(String aid, String aUthor, String aRefer, String aRes, Date createTime, Date aTime, String aCont) {
-        this.aid = aid;
-        this.aUthor = aUthor;
-        this.aRefer = aRefer;
-        this.aRes = aRes;
-        this.createTime = createTime;
-        this.aTime = aTime;
-        this.aCont = aCont;
+    public String getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(String empid) {
+        this.empid = empid;
+    }
+
+    private String aAnother;
+
+    public String getaAnother() {
+        return aAnother;
+    }
+
+    public void setaAnother(String aAnother) {
+        this.aAnother = aAnother;
     }
 
     public AuditEntity() {
-        super();
     }
 
 
@@ -106,5 +119,21 @@ public class AuditEntity implements Serializable {
 
     public void setaCont(String aCont) {
         this.aCont = aCont;
+    }
+
+    public String getaType() {
+        return aType;
+    }
+
+    public void setaType(String aType) {
+        this.aType = aType;
+    }
+
+    public String getaStat() {
+        return aStat;
+    }
+
+    public void setaStat(String aStat) {
+        this.aStat = aStat;
     }
 }

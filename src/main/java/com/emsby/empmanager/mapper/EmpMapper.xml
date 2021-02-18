@@ -7,11 +7,12 @@
         <result column="eName" property="eName"/>
         <result column="eSex" property="eSex"/>
         <result column="eBarithday" property="eBarithday"/>
-        <result column="eFirstTime" property="eFirstTime"/>
+        <result column="eJoinTime" property="eJoinTime"/>
         <result column="ePhone" property="ePhone"/>
         <result column="eAdress" property="eAdress"/>
         <result column="eMail" property="eMail"/>
         <result column="eStat" property="eStat"/>
         <result column="eJobTitle" property="eJobTitle"/>
+        <result column="eRole" property="eRole"/>
     </resultMap>
 </mapper>

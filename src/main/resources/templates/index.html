@@ -10,6 +10,7 @@
         <link rel="stylesheet" th:href="@{/css/font.css}">
         <link rel="stylesheet" th:href="@{/css/index.css}">
         <link rel="stylesheet" th:href="@{/css/iconfont.css}">
+        <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
         <script th:src="@{/layui/layui.all.js}" charset="utf-8"></script>
         <script type="text/javascript" th:src="@{/js/index.js}"></script>
 
@@ -18,57 +19,12 @@
         <!-- 顶部开始 -->
         <div class="container">
             <div class="logo">
-                <a href="./index.html">后台管理系统</a></div>
+                <a th:href="@{/index.html}">后台管理系统</a></div>
             <div class="left_open">
                 <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
             </div>
 
             <ul class="layui-nav right" lay-filter="">
-                <li class="new-nav" id="gonggao">
-                    <i></i>
-                    <a href="#"><i class="iconfont">&#xe6bc;</i><span class="layui-badge">4</span></a>
-                    <!--<dl class="layui-nav-child">-->
-                    <ul class="news" id="gonggaos" style="display: none;">
-                        <li class="dropdown-header"><i class="iconfont">&#xe6bc;</i>4条公告</li>
-                        <li> <a href="javascript:;" onclick="xadmin.add_tab('统计页面','notice-list.html')">
-                            <div class="clearfix">
-                                <span class="pull-left"> <i class="btn btn-pink iconfont">&#xe6bc;</i> 系统公告 </span>
-                                <span class="pull-right badge badge-info">+12</span>
-                            </div> </a> </li>
-                        <li> <a href="javascript:;" onclick="xadmin.add_tab('统计页面','notice-list.html')"> <i class="btn btn-primary iconfont">&#xe6bc;</i> 商城公告 </a> </li>
-
-                        <li> <a href="javascript:;" onclick="xadmin.add_tab('统计页面','notice-list.html')">查看所有公告 <i class="iconfont">&#xe69b;</i> </a> </li>
-                    </ul>
-                    <!--</dl>-->
-
-                </li>
-                <li class="new-nav" id="new-nav">
-                    <i></i>
-                    <a href="#"><i class="iconfont">&#xe713;</i><span class="layui-badge">9</span></a>
-                    <!--<dl class="layui-nav-child">-->
-                    <ul class="news" id="news" style="display: none;">
-                        <li class="dropdown-header"><i class="iconfont">&#xe6bc;</i>8条通知</li>
-                        <li> <a href="#">
-                            <div class="clearfix">
-                                <span class="pull-left"> <i class="btn btn-pink iconfont">&#xe69b;</i> 新闻评论 </span>
-                                <span class="pull-right badge badge-info">+12</span>
-                            </div> </a> </li>
-                        <li> <a href="#"> <i class="btn btn-primary iconfont">&#xe696;</i> 切换为编辑登录.. </a> </li>
-                        <li> <a href="#">
-                            <div class="clearfix">
-                                <span class="pull-left"> <i class="iconfont btn btn-success">&#xe723;</i> 新订单 </span>
-                                <span class="pull-right badge badge-success">+8</span>
-                            </div> </a> </li>
-                        <li> <a href="#">
-                            <div class="clearfix">
-                                <span class="pull-left"> <i class="iconfont btn btn-info">&#xe6ba;</i> 粉丝 </span>
-                                <span class="pull-right badge badge-info">+11</span>
-                            </div> </a> </li>
-                        <li> <a href="javascript:;" onclick="xadmin.add_tab('统计页面','email.html')"> 查看所有消息 <i class="iconfont">&#xe69b;</i> </a> </li>
-                    </ul>
-                    <!--</dl>-->
-
-                </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">admin</a>
                     <dl class="layui-nav-child">
@@ -76,7 +32,7 @@
                         <dd>
                             <a onclick="xadmin.open('个人信息','one_set.html')">个人信息</a></dd>
                         <dd>
-                            <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                            <a onclick="xadmin.open('切换帐号','')">切换帐号</a></dd>
                         <dd>
                             <a href="./login.html">退出</a></dd>
                     </dl>
@@ -135,7 +91,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('审核列表','cate.html')">
+                                <a onclick="xadmin.add_tab('审核列表','/audit.do')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>审核列表</cite></a>
                             </li>
@@ -154,34 +110,6 @@
                             </li>
                         </ul>
                     </li>-->
-                    <li>
-                        <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="管理员管理">&#xe726;</i>
-                            <cite>管理员管理</cite>
-                            <i class="iconfont nav_right">&#xe697;</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a onclick="xadmin.add_tab('管理员列表','admin-list.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>管理员列表</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('角色管理','admin-role.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>角色管理</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('权限分类','admin-cate.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>权限分类</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('权限管理','admin-rule.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>权限管理</cite></a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="考勤管理">&#xe6b8;</i>
@@ -211,7 +139,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('系统设置','sys-set.html')">
+                                <a onclick="xadmin.add_tab('系统设置','')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>系统设置</cite></a>
                             </li>
@@ -241,26 +169,12 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('薪资列表','note.html')">
+                                <a onclick="xadmin.add_tab('薪资列表','')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>薪资列表</cite></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="邮件管理">&#xe64a;</i>
-                            <cite>邮件管理</cite>
-                            <i class="iconfont nav_right">&#xe697;</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a onclick="xadmin.add_tab('邮件管理','email.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>邮件管理</cite></a>
-                            </li>
-                        </ul>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -280,7 +194,7 @@
                 </div>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <iframe th:replace='~{welcome.html}' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                        <iframe  th:replace="${html==null?'welcome':html}" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
                     </div>
                 </div>
                 <div id="tab_show"></div>
@@ -293,32 +207,10 @@
 
     </body>
     <script th:src="@{/js/jquery.min.js}"></script>
+    <script type= "text/javascript">
+
+    </script>
 
 </html>
 
-<script>
-    window.onload=function () {
-        var click=document.getElementById('new-nav');
-        var news=document.getElementById('news');
-        click.addEventListener('mousemove',function () {
-            news.style.display='block';
-        });
-        click.addEventListener('mouseout',function () {
-            news.style.display='none';
-        });
-
-        var gonggao=document.getElementById('gonggao');
-        var gonggaos=document.getElementById('gonggaos');
-        gonggao.addEventListener('mousemove',function () {
-            gonggaos.style.display='block';
-        });
-        gonggao.addEventListener('mouseout',function () {
-            gonggaos.style.display='none';
-        });
-    }
-
-
-
-
-</script>
 

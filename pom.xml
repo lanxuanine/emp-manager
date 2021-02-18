@@ -80,6 +80,14 @@
         <artifactId>mybatis-plus-annotation</artifactId>
         <version>3.3.2</version>
         </dependency>
+        <!--将中文汉字转成拼音-->
+        <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
+        <dependency>
+            <groupId>com.belerweb</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -87,6 +95,34 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!--maven编译时，会对文件进行过滤，针对字体文件进行过滤，会破坏字体文件，导致浏览器解析decode失败-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.woff2</include>
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
